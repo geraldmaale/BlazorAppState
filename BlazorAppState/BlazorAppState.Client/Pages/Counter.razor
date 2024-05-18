@@ -1,0 +1,30 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @AppState.Counter.Count</p>
+<p class="text-muted">Count Status: @AppState.Counter.Message</p>
+
+<button class="btn btn-primary"
+        @onclick="IncrementCount">
+    Click me
+</button>
+
+@code {
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; } = default!;
+
+
+    private void IncrementCount()
+    {
+        AppState.Count++;
+        AppState.Counter = AppState.Counter
+        with
+            {
+                Count = AppState.Counter.Count + 1,
+                Message = $"Count incremented at {DateTime.Now.ToLongTimeString()}"
+            };
+    }
+}

@@ -1,0 +1,28 @@
+﻿<div style="height:42px;">
+    @if (AppState.Count > 0)
+    {
+        <span style="font-size:x-large; border:solid 2px red;color:red;border-radius:10px; padding:10px">@AppState.Count</span>
+    }  
+    @if (AppState.Counter.Count > 0)
+    {
+        <span style="font-size:x-large; border:solid 2px darkgoldenrod;color:darkgoldenrod;border-radius:10px; padding:10px">@AppState.Counter.Count</span>
+    }
+    <span style="font-size:x-large">@AppState.Message</span>
+</div>
+
+@code {
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; } = default!;
+
+    // protected override void OnInitialized()
+    // {
+    //     AppState.RegisterCallback(EventCallback.Factory.Create<StatePropertyChangedArgs>(this, HandlePropertyChanged));
+    // }
+
+    // private Task HandlePropertyChanged(StatePropertyChangedArgs args)
+    // {
+    //     var propertyName = args.PropertyName;
+    //     var value = args.NewValue;
+    //     return Task.CompletedTask;
+    // }
+}

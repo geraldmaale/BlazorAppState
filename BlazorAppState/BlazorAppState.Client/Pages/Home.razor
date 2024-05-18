@@ -1,0 +1,25 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<p>
+    Hello, this is a demo of Blazor AppState.
+</p>
+
+<button class="btn btn-primary" @onclick="UpdateMessageClicked">
+    Update Message
+</button>
+
+<br />
+
+<h3>@AppState.Message</h3>
+
+@code {
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; } = default!;
+
+    private void UpdateMessageClicked()
+    {
+        AppState.Message = $"Hello from Home at {DateTime.Now.ToLongTimeString()}";
+    }
+}
